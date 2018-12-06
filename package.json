@@ -1,6 +1,6 @@
 {
-  "name": "node-progress-bars",
-  "version": "1.0.8",
+  "name": "ascii-progress",
+  "version": "1.1.0",
   "description": "Ascii progress-bar(s) in the terminal.",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/bubkoo/ascii-progress.git"
+    "url": "https://github.com/erhhung/ascii-progress.git"
   },
   "keywords": [
     "progress",
