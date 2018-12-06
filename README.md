@@ -6,7 +6,7 @@
 [![Package Quality](http://npm.packagequality.com/shield/ascii-progress.svg)](http://packagequality.com/#?package=ascii-progress)
 
 
-:ledger: **This fork wraps direct **`sync()`** method calls on the **"`get-cursor-position`"** module to ensure `process.stdin.isRaw` is false before the call (original state will be restored). This is necessary (at least for Linux builds of that native module) or else the call would fail and return `undefined`, causing the progress bar to not get rendered if raw mode was on. You can verify that this fix works by running **"`throttle.js`"** from the "`examples`" folder, which turns on raw mode on stdin to allow pressing the ESC key to exit.
+:ledger: **This fork wraps direct `sync()` method calls on the "`get-cursor-position`" module** to ensure `process.stdin.isRaw` is false before the call (original state will be restored). This is necessary (at least for **Linux** builds of that native module) or else the call would fail and return `undefined`, causing the progress bar to not get rendered had raw mode been on. You can verify that this fix works on Linux by running **"`throttle.js`"** from the "`examples`" folder, which turns on raw mode to allow pressing the ESC key to exit.
 
 
 **Feature**:
