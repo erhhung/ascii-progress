@@ -504,7 +504,7 @@ function ucFirst(str) {
 }
 
 function repeatChar(count, char) {
-  return new Array(parseInt(count, 10) + 1).join(char);
+  return new Array((parseInt(count, 10)|0) + 1).join(char);
 }
 
 function parseMethod(cursor, str) {
