@@ -1,9 +1,11 @@
 var ansi = require('ansi.js');
 var endWith = require('end-with');
 var startWith = require('start-with');
-var getCurosrPos = require('get-cursor-position');
+var cursorPos = require('get-cursor-position');
+var platform = require('os').platform();
 var newlineEvent = require('on-new-line');
 
+var stdin = process.stdin;
 var stream = process.stdout;
 stream.rows = stream.rows || 40;
 stream.columns = stream.columns || 80;
@@ -11,6 +13,21 @@ stream.columns = stream.columns || 80;
 var placeholder = '\uFFFC';
 var rendering = false;
 var instances = [];
+
+function getCursorPos() {
+  // raw mode must be off (at least
+  // on linux) or else sync() fails
+  var change = stdin.isRaw && platform === 'linux';
+  if (change) {
+    stdin.setRawMode(false);
+  }
+
+  var pos = cursorPos.sync();
+  if (change) {
+    stdin.setRawMode(true);
+  }
+  return pos;
+}
 
 function beginUpdate() {
   rendering = true;
@@ -32,7 +49,7 @@ stream.on('before:newlines', function (count) {
     return;
   }
 
-  var current = getCurosrPos.sync();
+  var current = getCursorPos();
   if (!current) {
     return;
   }
@@ -239,7 +256,7 @@ ProgressBar.prototype.render = function (output) {
     return;
   }
 
-  var current = getCurosrPos.sync();
+  var current = getCursorPos();
   if (!current) {
     return;
   }
